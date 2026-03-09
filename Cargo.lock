@@ -587,6 +587,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "11d3d7f243d5c5a8b9bb5d6dd2b1602c0cb0b9db1621bafc7ed66e35ff9fe092"
 
 [[package]]
+name = "log"
+version = "0.4.29"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5e5032e24019045c762d3c0f28f5b6b8bbf38563a65908389bf7978758920897"
+
+[[package]]
 name = "managed"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -637,6 +643,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "port-expander"
+version = "0.6.5"
+dependencies = [
+ "defmt 1.0.1",
+ "embedded-hal 1.0.0",
+ "log",
+]
+
+[[package]]
 name = "port-expander-example"
 version = "0.1.0"
 dependencies = [
@@ -656,6 +671,7 @@ dependencies = [
  "embedded-io-async 0.7.0",
  "embedded-storage",
  "panic-probe",
+ "port-expander",
 ]
 
 [[package]]
