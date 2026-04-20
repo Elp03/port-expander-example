@@ -26,10 +26,10 @@ embassy-executor = { version = "0.9", features = ["arch-cortex-m", "executor-thr
 embassy-sync = { version = "0.7" }
 embassy-time = { version = "0.5", features = ["defmt", "defmt-timestamp-uptime"] }
 
-cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+cortex-m = { version = "0.7.6", features = ["critical-section-single-core", "inline-asm"] }
 embassy-nrf = { version = "0.9", features = ["defmt", "nrf9151-s", "time-driver-rtc1", "gpiote", "unstable-pac", "time"] }
 embassy-net-nrf91 = { version = "0.1", features = ["defmt"]}
-embassy-net = { version = "0.7", features = ["defmt", "tcp", "proto-ipv4", "medium-ip", "dns"] }
+# embassy-net = { version = "0.7", features = ["defmt", "tcp", "proto-ipv4", "medium-ip", "dns"] }
 # port-expander = "0.6.5"
 
 port-expander = { path = "/home/athamantis/git/port-expander/" }
