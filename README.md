@@ -4,7 +4,9 @@ Test for checking the PCAL9471
 
 Implemented | Hardware tested | Branch | Note 
 --- |--- |--- |--- |
-Output | | | |
-set high/low | - [x] | main |
-Input | | | |
-is high/low?  | - [x] | pcal-input-test |
+configure input/output | [x] | NA | |
+set high/low | [x] | main | |
+is high/low?  | [x] | pcal-input-test | | 
+Sett pullup    | [ ] | | |
+Sett pulldown  | [ ] | | |
+Sett polarity inversion  | [ ] | | |
