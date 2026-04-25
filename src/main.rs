@@ -2,6 +2,7 @@
 #![no_main]
 
 use core::cell::RefCell;
+use defmt::println;
 use embassy_embedded_hal::shared_bus::blocking::spi::SpiDevice;
 use embassy_executor::Spawner;
 use embassy_nrf::{
@@ -53,60 +54,64 @@ async fn main(_spawner: Spawner) -> ! {
     Timer::after_secs(1).await;
 
     let mut pin0_0 = pins.gp0_0.into_output().expect("Pin 0.0 failed");
-    let mut pin0_1 = pins.gp0_1.into_output().expect("Pin 0.1 failed");
-    let mut pin0_2 = pins.gp0_2.into_output().expect("Pin 0.2 failed");
-    let mut pin0_3 = pins.gp0_3.into_output().expect("Pin 0.3 failed");
-    let mut pin0_4 = pins.gp0_4.into_output().expect("Pin 0.4 failed");
-    let mut pin0_5 = pins.gp0_5.into_output().expect("Pin 0.5 failed");
-    let mut pin0_6 = pins.gp0_6.into_output().expect("Pin 0.6 failed");
-    let mut pin0_7 = pins.gp0_7.into_output().expect("Pin 0.7 failed");
-    let mut pin1_0 = pins.gp1_0.into_output().expect("Pin 1.0 failed");
-    let mut pin1_1 = pins.gp1_1.into_output().expect("Pin 1.1 failed");
-    let mut pin1_2 = pins.gp1_2.into_output().expect("Pin 1.2 failed");
-    let mut pin1_3 = pins.gp1_3.into_output().expect("Pin 1.3 failed");
-    let mut pin1_4 = pins.gp1_4.into_output().expect("Pin 1.4 failed");
-    let mut pin1_5 = pins.gp1_5.into_output().expect("Pin 1.4 failed");
+    let mut pin0_1 = pins.gp0_1.into_inverted().expect("Pin 0.1 failed");
+    //pin0_1 = pin0_1.into_inverted().expect("failed to invert");
+    // let mut pin0_1_polar = pin0_1.set_inverted(true);
+    let mut pin0_2 = pins.gp0_2.into_inverted().expect("Pin 0.2 failed");
+    let mut pin0_3 = pins.gp0_3.into_inverted().expect("Pin 0.3 failed");
+    let mut pin0_4 = pins.gp0_4.into_inverted().expect("Pin 0.4 failed");
+    let mut pin0_5 = pins.gp0_5.into_inverted().expect("Pin 0.5 failed");
+    let mut pin0_6 = pins.gp0_6.into_inverted().expect("Pin 0.6 failed");
+    let mut pin0_7 = pins.gp0_7.into_inverted().expect("Pin 0.7 failed");
+    let mut pin1_0 = pins.gp1_0.into_inverted().expect("Pin 1.0 failed");
+    let mut pin1_1 = pins.gp1_1.into_inverted().expect("Pin 1.1 failed");
+    let mut pin1_2 = pins.gp1_2.into_inverted().expect("Pin 1.2 failed");
+    let mut pin1_3 = pins.gp1_3.into_inverted().expect("Pin 1.3 failed");
+    let mut pin1_4 = pins.gp1_4.into_inverted().expect("Pin 1.4 failed");
+    let mut pin1_5 = pins.gp1_5.into_inverted().expect("Pin 1.4 failed");
     defmt::info!("All pins initialized");
     Timer::after_secs(1).await;
 
     loop {
         pin0_0.set_high().expect("Pin 0.0 failed");
-        pin0_1.set_high().expect("Pin 0.1 failed");
-        pin0_2.set_high().expect("Pin 0.2 failed");
-        pin0_3.set_high().expect("Pin 0.3 failed");
-        pin0_4.set_high().expect("Pin 0.4 failed");
-        pin0_5.set_high().expect("Pin 0.5 failed");
-        pin0_6.set_high().expect("Pin 0.6 failed");
-        pin0_7.set_high().expect("Pin 0.7 failed");
-        pin1_0.set_high().expect("Pin 1.0 failed");
-        pin1_1.set_high().expect("Pin 1.1 failed");
-        pin1_2.set_high().expect("Pin 1.2 failed");
-        pin1_3.set_high().expect("Pin 1.3 failed");
-        pin1_4.set_high().expect("Pin 1.4 failed");
-        // // With this delay, the program does not crash
-        // Timer::after(Duration::from_millis(1)).await;
-        pin1_5.set_high().expect("Pin 1.5 failed");
-        defmt::info!("Sett all pins high");
-        Timer::after(Duration::from_millis(400)).await;
-
+        defmt::info!("toggle!");
+        Timer::after(Duration::from_millis(100)).await;
+        defmt::info!(
+            "HIGH §§§§§§ {:#?}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+            pin0_1.is_high().expect("failed"),
+            pin0_2.is_high().expect("failed"),
+            pin0_3.is_high().expect("failed"),
+            pin0_4.is_high().expect("failed"),
+            pin0_5.is_high().expect("failed"),
+            pin0_6.is_high().expect("failed"),
+            pin0_7.is_high().expect("failed"),
+            pin1_0.is_high().expect("failed"),
+            pin1_1.is_high().expect("failed"),
+            pin1_2.is_high().expect("failed"),
+            pin1_3.is_high().expect("failed"),
+            pin1_4.is_high().expect("failed"),
+            pin1_5.is_high().expect("failed"),
+        );
+        Timer::after(Duration::from_millis(1000)).await;
         pin0_0.set_low().expect("Pin 0.0 failed");
-        pin0_1.set_low().expect("Pin 0.1 failed");
-        pin0_2.set_low().expect("Pin 0.2 failed");
-        pin0_3.set_low().expect("Pin 0.3 failed");
-        pin0_4.set_low().expect("Pin 0.4 failed");
-        pin0_5.set_low().expect("Pin 0.5 failed");
-        pin0_6.set_low().expect("Pin 0.6 failed");
-        pin0_7.set_low().expect("Pin 0.7 failed");
-        pin1_0.set_low().expect("Pin 1.0 failed");
-        pin1_1.set_low().expect("Pin 1.1 failed");
-        pin1_2.set_low().expect("Pin 1.2 failed");
-        pin1_3.set_low().expect("Pin 1.3 failed");
-        pin1_4.set_low().expect("Pin 1.4 failed");
-        // // With this delay, the program does not crash
-        // Timer::after(Duration::from_millis(1)).await;
-        pin1_5.set_low().expect("Pin 1.5 failed");
-
-        defmt::info!("Sett all pins low");
-        Timer::after(Duration::from_millis(200)).await;
+        defmt::info!("toggle!");
+        Timer::after(Duration::from_millis(100)).await;
+        defmt::info!(
+            "LOW §§§§§§ {:#?}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}",
+            pin0_1.is_high().expect("failed"),
+            pin0_2.is_high().expect("failed"),
+            pin0_3.is_high().expect("failed"),
+            pin0_4.is_high().expect("failed"),
+            pin0_5.is_high().expect("failed"),
+            pin0_6.is_high().expect("failed"),
+            pin0_7.is_high().expect("failed"),
+            pin1_0.is_high().expect("failed"),
+            pin1_1.is_high().expect("failed"),
+            pin1_2.is_high().expect("failed"),
+            pin1_3.is_high().expect("failed"),
+            pin1_4.is_high().expect("failed"),
+            pin1_5.is_high().expect("failed"),
+        );
+        Timer::after(Duration::from_millis(1000)).await;
     }
 }
