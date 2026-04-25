@@ -45,7 +45,7 @@ async fn main(_spawner: Spawner) -> ! {
     let spi_dev1 = SpiDevice::new(spi_bus, cs_pin1);
     defmt::info!("SPI Device initialized");
 
-    let mut pcal9714 = port_expander::PCAL9714::new_PCAL9714(spi_dev1, false);
+    let mut pcal9714 = port_expander::Pcal9714::new_pcal9714(spi_dev1, false);
     defmt::info!("Port expander initialized");
 
     let pins = pcal9714.split();
