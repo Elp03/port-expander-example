@@ -83,8 +83,6 @@ async fn main(_spawner: Spawner) -> ! {
         pin1_2.set_high().expect("Pin 1.2 failed");
         pin1_3.set_high().expect("Pin 1.3 failed");
         pin1_4.set_high().expect("Pin 1.4 failed");
-        // // With this delay, the program does not crash
-        // Timer::after(Duration::from_millis(1)).await;
         pin1_5.set_high().expect("Pin 1.5 failed");
         defmt::info!("Sett all pins high");
         Timer::after(Duration::from_millis(400)).await;
@@ -102,8 +100,6 @@ async fn main(_spawner: Spawner) -> ! {
         pin1_2.set_low().expect("Pin 1.2 failed");
         pin1_3.set_low().expect("Pin 1.3 failed");
         pin1_4.set_low().expect("Pin 1.4 failed");
-        // // With this delay, the program does not crash
-        // Timer::after(Duration::from_millis(1)).await;
         pin1_5.set_low().expect("Pin 1.5 failed");
 
         defmt::info!("Sett all pins low");
